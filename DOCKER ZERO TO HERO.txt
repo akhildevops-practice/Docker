@@ -1,0 +1,134 @@
+***************************DOCKER ZERO TO HERO***********************
+
+sudo apt update
+sudo apt install docker.io
+docker run hello-world
+sudo usermod -aG docker ubuntu
+logut
+login
+docker run hello-world
+git clone ""
+ls
+cd examples/
+cd my-first-dockerfile
+vim dockerfile
+
+
+docker login
+docker build -t akhilprabhu2005/my_flask_host_app .
+docker images
+docker run -p 5000:5000 akhilprabhu2005/my_flask_host_app
+docker push akhilprabhu2005/my_flask_host_app
+
+
+Certainly! Let's create a Dockerfile for a simple web application using Flask, a lightweight web framework for Python. This example will demonstrate how to set up a basic web server that responds with "Hello, World!" when accessed.
+
+### Directory Structure
+
+Here's a basic structure for your project:
+
+```
+/my_flask_app
+|-- Dockerfile
+|-- app.py
+|-- requirements.txt
+```
+
+### `app.py`
+
+This is your Flask application:
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+```
+
+### `requirements.txt`
+
+List the required Python packages:
+
+```
+Flask==2.2.3
+```
+
+### Dockerfile
+
+Here's how you can set up your Dockerfile:
+
+```dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
+
+# Set the working directory in the image
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install the required packages
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set environment variables
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=5000
+
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
+
+# Run Flask when the container launches
+CMD ["flask", "run"]
+```
+
+### Steps to Build and Run
+
+1. **Navigate to the directory containing your Dockerfile:**
+
+   ```bash
+   cd /path/to/my_flask_app
+   ```
+
+2. **Build the Docker image:**
+
+   ```bash
+   docker build -t my_flask_app .
+   ```
+
+3. **Run the Docker container:**
+
+   ```bash
+   docker run -p 5000:5000 my_flask_app
+   ```
+
+4. **Access your Flask app:**
+
+   Open a web browser and go to `http://localhost:5000`. You should see "Hello, World!" displayed.
+
+This example demonstrates setting up a basic web server with Flask inside a Docker container. Feel free to expand on this by adding more routes or functionality to your Flask app!
+
+****************************************************WORKFLOW OF DEVOPS ENGINEER IN DJANGO APP*****************************************
+
+
+settings.py --- What are ip's we can white list, database which are connect, secret keys, secure information, support templates, use webserver gateway interface
+
+urls.py files in Django play a crucial role in defining how URLs are routed to views within your project. They facilitate a clear structure for organizing and managing URL patterns across your application, making it easier to maintain and expand your web application as it grows.
+
+views.py -- we write actual code to render the html page
+
+
+
+*** difference between entrypoint and cmd in docker?
+
+entrypoint and cmd are used as start command, only difference is entrypoint cannot change in docker image . CMD is configurable.
+
+
+
+accessCode=634-943-398 locale=en-US clickNum=354353820280997
