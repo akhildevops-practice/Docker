@@ -1,0 +1,13 @@
+### Multistage Docker
+**What:** Multistage builds in Docker allow you to use multiple `FROM` statements in a single Dockerfile to create different build stages.
+
+**Why:** It helps in reducing the final image size by separating the build environment from the runtime environment, only including what's necessary for running the app.
+
+**Where Used:** Typically used in scenarios where you want to build and compile an application (e.g., a Node.js, Go, or Java app) in one stage, and then copy only the necessary output (like compiled binaries) to a new stage with a lighter base image for production.
+
+### Distroless Docker
+**What:** Distroless images are minimal Docker images that contain only the application and its dependencies, without a full operating system (like `bash` or `sh`).
+
+**Why:** They provide improved security (fewer components to exploit) and smaller image sizes, leading to faster deployment and reduced attack surface.
+
+**Where Used:** Often used for production environments where you want minimal dependencies and focus on security, especially with apps like Java, Python, or Node.js that don’t require additional OS tools.
